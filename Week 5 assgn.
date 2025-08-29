@@ -1,0 +1,83 @@
+Assignment 1: Design Your Own Class! 🏗️
+
+# Base Class
+class Smartphone:
+    def __init__(self, brand, model, storage, battery):
+        self.brand = brand
+        self.model = model
+        self._storage = storage   # Encapsulation: protected attribute
+        self.battery = battery
+
+    def call(self, number):
+        return f"{self.brand} {self.model} is calling {number}..."
+
+    def charge(self, amount):
+        self.battery += amount
+        return f"Battery charged to {self.battery}%"
+
+    def get_storage(self):
+        return f"Storage: {self._storage}GB"
+
+
+# Derived Class (Inheritance)
+class SmartPhoneWithCamera(Smartphone):
+    def __init__(self, brand, model, storage, battery, camera_mp):
+        super().__init__(brand, model, storage, battery)
+        self.camera_mp = camera_mp
+
+    # Polymorphism: overriding method
+    def call(self, number):
+        return f"Video calling {number} using {self.camera_mp}MP camera on {self.model}!"
+
+    def take_photo(self):
+        return f"Photo taken with {self.camera_mp}MP camera."
+
+
+# Using the classes
+phone1 = Smartphone("Samsung", "Galaxy S24", 256, 80)
+phone2 = SmartPhoneWithCamera("Apple", "iPhone 15", 512, 90, 48)
+
+# Testing methods
+print(phone1.call("0723456789"))
+print(phone1.charge(10))
+print(phone1.get_storage())
+
+print(phone2.call("0787654321"))   # Polymorphism in action
+print(phone2.take_photo())
+print(phone2.get_storage())
+
+Activity 2: Polymorphism Challenge! 🎭
+
+# Base class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def move(self):
+        # General placeholder method
+        return f"{self.name} moves in some way."
+
+
+# Derived classes with different behaviors
+class Dog(Animal):
+    def move(self):
+        return f"{self.name} is Running 🐕"
+
+
+class Bird(Animal):
+    def move(self):
+        return f"{self.name} is Flying 🐦"
+
+
+class Fish(Animal):
+    def move(self):
+        return f"{self.name} is Swimming 🐟"
+
+
+# Using polymorphism
+animals = [Dog("Buddy"), Bird("Tweety"), Fish("Nemo")]
+
+for a in animals:
+    print(a.move())
+
+
